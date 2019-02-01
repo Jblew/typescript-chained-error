@@ -8,19 +8,30 @@
     "node": ">=10.15"
   },
   "scripts": {
+    "check": "if echo \"$(node --version)\" | grep -q \"$(cat .nvmrc)\"; then echo \"Node version correct\"; else echo \"Node version does not match that in .nvmrc\" && exit 1; fi",
     "build:cleanbefore": "rm -rf dist",
     "build:node": "tsc",
-    "build": "npm run build:cleanbefore && npm run build:node",
-    "prepare": "NODE_ENV=production npm run build"
+    "build": "npm run check && npm run build:cleanbefore && npm run build:node",
+    "prepare": "NODE_ENV=production npm run build",
+    "test": "find src -name '*.spec.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register",
+    "verify": "find src -name '*.integration.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register"
   },
   "dependencies": {
+    "ts-custom-error": "^2.2.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/lodash": "^4.14.120",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.21",
     "@types/winston": "^2.4.4",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "lodash": "^4.17.11",
     "mocha": "^5.2.0",
+    "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
     "typescript": "^3.3.1"
   },
