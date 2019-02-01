@@ -1,6 +1,6 @@
 {
   "name": "universe-log",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Universal javascript log for node and browser. Suitable for libraries and microservices. Configurable via env and window. Extendable",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
