@@ -18,18 +18,18 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.19",
+    "@types/node": "^10.12.21",
     "@types/winston": "^2.4.4",
     "mocha": "^5.2.0",
-    "tslint": "^5.11.0",
-    "typescript": "^2.9.2"
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wise-team/universe-log"
   },
   "keywords": [
-    "watchdog"
+    "log"
   ],
   "author": "The Wise Team (https://wise-team.io/)",
   "contributors": [
