@@ -1,0 +1,43 @@
+{
+  "name": "universe-log",
+  "version": "0.1.0",
+  "description": "Universal javascript log for node and browser. Suitable for libraries and microservices. Configurable via env and window. Extendable",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10.15"
+  },
+  "scripts": {
+    "build:cleanbefore": "rm -rf dist",
+    "build:node": "tsc",
+    "build": "npm run build:cleanbefore && npm run build:node",
+    "prepare": "NODE_ENV=production npm run build"
+  },
+  "dependencies": {
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.19",
+    "@types/winston": "^2.4.4",
+    "mocha": "^5.2.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wise-team/universe-log"
+  },
+  "keywords": [
+    "watchdog"
+  ],
+  "author": "The Wise Team (https://wise-team.io/)",
+  "contributors": [
+    "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wise-team/universe-log/issues"
+  },
+  "homepage": "https://wise.vote/"
+}
