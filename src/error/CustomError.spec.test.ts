@@ -1,7 +1,8 @@
+/* tslint:disable:max-classes-per-file */
 import { expect, use as chaiUse } from "chai";
 import * as chaiAsPromised from "chai-as-promised";
-import "mocha";
 import * as _ from "lodash";
+import "mocha";
 chaiUse(chaiAsPromised);
 
 import { CustomError } from "./CustomError";
