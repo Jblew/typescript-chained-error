@@ -1,7 +1,7 @@
 import { CustomError as TsCustomError } from "ts-custom-error";
 
 export class CustomError extends TsCustomError {
-    private cause?: Error;
+    public cause?: Error;
 
     public constructor(message?: string, cause?: Error) {
         super(message);
