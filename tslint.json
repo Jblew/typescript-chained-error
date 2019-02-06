@@ -25,7 +25,8 @@
                 "grouped-imports": "true"
             }
         ],
-        "no-unused-variable": true
+        "no-unused-variable": true,
+        "cyclomatic-complexity": [true, 10]
     },
     "rulesDirectory": []
 }
