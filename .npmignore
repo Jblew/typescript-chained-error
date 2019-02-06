@@ -6,3 +6,5 @@
 /src
 /.DS_Store
 /sample
+/tslint.json
+/tsconfig.lint.json
