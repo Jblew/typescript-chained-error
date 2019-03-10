@@ -1,0 +1,25 @@
+dist: xenial
+language: node_js
+
+env:
+  global:
+  - secure: eIoCsiY2+35NOXk/WYA+G4W3TDjDb6ce98Akffo4xmhyDsdR9vufHpX72CLd1MBktGtlrImbId1CmPnHnVV0ykvuLxmV+GRDOMnDpmm4xamv0tJLL3q18vmBNwj+OlmsevTiKfZ5S7UHmDj3Zcp/dPs3FoBD70QVFq/5GeJtqJlDuMWNDpTz0cdQ3v32C6rLnLupZxC5OObZ67QtW0HF6ZXkJYIQ6Bf8w2Z6xBj96Tu/FYjuhXaDbPiJzj9Xxf64dzqpdbC/oJ5xjMiRQtA1xmc17b7GP+sUOdSiM9WBiUCJ188E/O4Ag+yeF6i+fwXlPMJuppTaji1YdqSZq6BF1PwaBDbBzuwI5xGICkUY8W+Zsqrev+AW5rslMYXOktbsdPsYSVsatRQM4yU0dwgjBXV3x89cjf8ID/8jvApDjfIC08I3oxpqle+Ka0JW8Khr957942X1gCnIDC8wcamAaYPjZQMVcei/ft3pVerT4ahB9VNcx+ak3gjQIPdhSTPtuZS5GuKqc5r6HCTFWBHClSebxu/TZK+WSEHt0PFFIogeqCnbY7RxnsaFO7qcaCzzbhYVOhtLntwfTCv2wYH5dERNuRNy4qwNwHVOLnkvNAF7B/2HQ2hyBt/8sDXJ3tS/j5KcSJMdPXSePGhstjHChyaRjd5rMPazhhW4aAp6JOI=
+  - secure: C0gMUjaX9c4Zdyh0lrilpZQU5zQznJh8Q3ustI+qrCw9YzwNf4KgwiYDPDSc7/F2Bb/LZMFYPiEqyA0r4ukdtHpk6O6Nhiuocp9o2IAFIym6L1MWRrEFmZ/t9rahdANZK2tVWYtjxcZtvUhFrnUsXljVumOCzup+AYwFhI00ktIOYxxR4CO9ouN//MZZu8q41as9u8aeenmf/nn+V7WKwRW9wXHiI8yJmBEnEaFTHzNOqdzbcCvclTiHXKrhhl4mmt53Lq9Ss3mT0R1Lm/sW7qAj3L19RvDwoSL/2mXfVMLNg5ER9pIlVLOLgEplxUUrqoz9tVegEQ4jgk93DgPR+qhb2yY+oPQXGzmPlBiIoxQhGqgs2dQbSWBQi/0QbpYP/kI3EZPl/gSWKLmB+/f76VlHDhgujIjq+y7AKwcYrjRqC+1gL3mLtUmGUGplCUYpAJDEgT+UBQzAjpuc1FNRPx/ValejS5g11DrDpCbx0+R7T57QS1hK06ITfuWU1Z2J2YarKb9Ccl0Z+c6YFmwIrzwFnb1yL+44HDmWr8Fzwbo3vsb7ur8n2YM6J6krgFEi3nhEELL/mnVMSFmTc6VgqSR8IhN/VoX57L7jJAoDY6YepCcTH9K871ntHrQMw4aOjGpx9Md8O8VKr6ou+Y5iWHoHxPgw3ZiTJliZrnmh+r4=
+
+
+install:
+  - npm ci
+
+script:
+  - npm run build
+  - npm run test
+  - echo "sleep random number of seconds 1-10 to prevent blockchain collisions" && sleep "$(( ( RANDOM % 10 )  + 1 ))"
+  - npm run verify
+
+deploy:
+  - provider: script
+    script: npx semantic-release
+    skip_cleanup: true
+    on:
+      tags: false
+      all_branches: true
