@@ -8,3 +8,4 @@
 /sample
 /tslint.json
 /tsconfig.lint.json
+*.test.ts
