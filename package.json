@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "ow": "^0.12.0",
-    "ts-custom-error": "^2.2.2"
+    "ts-custom-error": "^3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
