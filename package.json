@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "ow": "^0.12.0",
-    "ts-custom-error": "^3.0.0"
+    "ts-custom-error": "^2.2.2"
   },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
@@ -32,7 +32,7 @@
     "@types/lodash": "4.14.123",
     "@types/mocha": "5.2.6",
     "@types/node": "10.14.4",
-    "@types/sinon": "7.0.9",
+    "@types/sinon": "7.0.11",
     "@types/uuid": "3.4.4",
     "bluebird": "3.5.3",
     "chai": "4.2.0",
@@ -41,7 +41,7 @@
     "lodash": "4.17.11",
     "mocha": "6.0.2",
     "semantic-release": "16.0.0-beta.18",
-    "sinon": "7.2.7",
+    "sinon": "7.3.1",
     "ts-node": "8.0.3",
     "tslint": "5.15.0",
     "typescript": "3.3.1",
