@@ -43,7 +43,7 @@
     "semantic-release": "16.0.0-beta.18",
     "sinon": "7.2.7",
     "ts-node": "8.0.3",
-    "tslint": "5.12.1",
+    "tslint": "5.15.0",
     "typescript": "3.3.1",
     "uuid": "3.3.2",
     "wise-tslint-configuration": "0.1.0"
