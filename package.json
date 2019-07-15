@@ -48,7 +48,7 @@
     "tslint": "5.15.0",
     "typescript": "3.5.3",
     "uuid": "3.3.2",
-    "wise-tslint-configuration": "0.1.0"
+    "wise-tslint-configuration": "0.2.0"
   },
   "commitlint": {
     "extends": [
