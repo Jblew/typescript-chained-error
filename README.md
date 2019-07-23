@@ -1,4 +1,6 @@
-# Typescript chained custom error
+# Typescript chained error
+
+[![npm](https://img.shields.io/npm/v/typescript-chained-error.svg?style=flat-square)](https://www.npmjs.com/package/typescript-chained-error) [![build](https://travis-ci.com/Jblew/typescript-chained-error.svg?branch=master)](https://travis-ci.com/Jblew/typescript-chained-error) [![License](https://img.shields.io/github/license/wise-team/steem-content-renderer.svg?style=flat-square)](https://github.com/wise-team/steem-content-renderer/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ### Installation
 
@@ -47,9 +49,6 @@ CannotPerformCalculationsError: Cannot build array
     (...)
 ```
 
+---
 
-
-***
-
-Extends the brilliant [ts-custom-error](https://www.npmjs.com/package/ts-custom-error).  | Made with ❤️ by [Jędrzej Lewandowski](https://jedrzej.lewandowski.doctor/).
-
+Extends the brilliant [ts-custom-error](https://www.npmjs.com/package/ts-custom-error). | Made with ❤️ by [Jędrzej Lewandowski](https://jedrzej.lewandowski.doctor/).
