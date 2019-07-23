@@ -1,11 +1,11 @@
 {
-  "name": "universe-log",
-  "version": "1.3.0",
-  "description": "Universal javascript log for node and browser. Suitable for libraries and microservices. Configurable via env and window. Extendable",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "typescript-chained-error",
+  "version": "0.0.0-development",
+  "description": "Java-style chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
+  "main": "dist/ChainedError.js",
+  "types": "dist/ChainedError.d.ts",
   "engines": {
-    "node": ">=10.15"
+    "node": ">=8"
   },
   "scripts": {
     "check": "if echo \"$(node --version)\" | grep -q \"$(cat .nvmrc)\"; then echo \"Node version correct\"; else echo \"Node version does not match that in .nvmrc\" && exit 1; fi",
@@ -20,33 +20,23 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "ow": "^0.13.2",
     "ts-custom-error": "^3.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "7.6.1",
-    "@commitlint/config-conventional": "7.6.0",
-    "@types/bluebird": "3.5.27",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "@types/chai": "4.1.7",
-    "@types/chai-as-promised": "7.1.0",
-    "@types/lodash": "4.14.136",
     "@types/mocha": "5.2.7",
-    "@types/node": "10.14.12",
-    "@types/sinon": "7.0.13",
-    "@types/uuid": "3.4.5",
-    "bluebird": "3.5.5",
+    "@types/node": "^12.6.8",
     "chai": "4.2.0",
-    "chai-as-promised": "7.1.1",
-    "husky": "^3.0.0",
-    "lodash": "4.17.14",
-    "mocha": "6.1.4",
+    "husky": "^3.0.1",
+    "jblew-tslint-config": "^0.1.0",
+    "mocha": "^6.2.0",
     "semantic-release": "^15.13.18",
-    "sinon": "7.3.2",
     "ts-node": "8.3.0",
     "tslint": "5.18.0",
     "typescript": "3.5.3",
-    "uuid": "3.3.2",
-    "wise-tslint-configuration": "0.2.0"
+    "uuid": "3.3.2"
   },
   "commitlint": {
     "extends": [
@@ -69,18 +59,18 @@
   "release": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/wise-team/universe-log"
+    "url": "https://github.com/Jblew/typescript-chained-error"
   },
   "keywords": [
-    "log"
+    "typescript",
+    "error"
   ],
-  "author": "The Wise Team (https://wise-team.io/)",
+  "author": "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)",
   "contributors": [
     "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wise-team/universe-log/issues"
-  },
-  "homepage": "https://wise.vote/"
+    "url": "https://github.com/Jblew/typescript-chained-error/issues"
+  }
 }

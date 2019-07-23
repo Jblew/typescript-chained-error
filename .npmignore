@@ -9,3 +9,6 @@
 /tslint.json
 /tsconfig.lint.json
 *.test.ts
+/.travis.yml
+/.nvmrc
+/tsconfig.json

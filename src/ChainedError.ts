@@ -1,6 +1,6 @@
 import { CustomError as TsCustomError } from "ts-custom-error";
 
-export class CustomError extends TsCustomError {
+export default class ChainedError extends TsCustomError {
     public cause?: Error;
 
     public constructor(message?: string, cause?: Error) {

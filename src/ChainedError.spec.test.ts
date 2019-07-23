@@ -1,26 +1,23 @@
 /* tslint:disable:max-classes-per-file */
-import { expect, use as chaiUse } from "chai";
-import * as chaiAsPromised from "chai-as-promised";
-import * as _ from "lodash";
+import { expect } from "chai";
 import "mocha";
-chaiUse(chaiAsPromised);
 
-import { CustomError } from "./CustomError";
+import ChainedError from "./ChainedError";
 
-describe("CustomError", () => {
-    class ACustomError extends CustomError {
+describe("ChainedError", () => {
+    class AChainedError extends ChainedError {
         public constructor(msg: string, cause?: Error) {
             super(msg, cause);
         }
     }
 
-    class BCustomError extends CustomError {
+    class BChainedError extends ChainedError {
         public constructor(msg: string, cause?: Error) {
             super(msg, cause);
         }
     }
 
-    class CCustomError extends CustomError {
+    class CChainedError extends ChainedError {
         public constructor(msg: string, cause?: Error) {
             super(msg, cause);
         }
@@ -28,41 +25,41 @@ describe("CustomError", () => {
 
     describe("with single cause", () => {
         function thrower() {
-            throw new ACustomError("Error in thrower");
+            throw new AChainedError("Error in thrower");
         }
 
         function rethrower() {
             try {
                 thrower();
             } catch (error) {
-                throw new BCustomError("Error in rethrower", error);
+                throw new BChainedError("Error in rethrower", error);
             }
         }
 
         it("cause is instance of specified error", () => {
             expect(rethrower)
-                .to.throw(BCustomError)
+                .to.throw(BChainedError)
                 .with.property("cause");
         });
 
         it("stack contains cause with it's stack", () => {
             expect(rethrower)
-                .to.throw(BCustomError)
+                .to.throw(BChainedError)
                 .with.property("stack")
-                .that.include("Caused by: ACustomError");
+                .that.include("Caused by: AChainedError");
         });
     });
 
     describe("with stacked causes", () => {
         function thrower() {
-            throw new ACustomError("Error in thrower");
+            throw new AChainedError("Error in thrower");
         }
 
         function rethrower1() {
             try {
                 thrower();
             } catch (error) {
-                throw new BCustomError("Error in rethrower1", error);
+                throw new BChainedError("Error in rethrower1", error);
             }
         }
 
@@ -70,16 +67,16 @@ describe("CustomError", () => {
             try {
                 rethrower1();
             } catch (error) {
-                throw new CCustomError("Error in rethrower2", error);
+                throw new CChainedError("Error in rethrower2", error);
             }
         }
 
         it("stack contains two causes with it's stack", () => {
             expect(rethrower2)
-                .to.throw(CCustomError)
+                .to.throw(CChainedError)
                 .with.property("stack")
-                .that.include("Caused by: ACustomError")
-                .and.include("Caused by: BCustomError");
+                .that.include("Caused by: AChainedError")
+                .and.include("Caused by: BChainedError");
         });
     });
 });
