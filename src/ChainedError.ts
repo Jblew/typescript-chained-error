@@ -1,4 +1,4 @@
-import * as cleanStack from "clean-stack";
+import * as cleanStack from "clean-stack--tmp-fork-by-jblew-browser-support";
 import { CustomError as TsCustomError } from "ts-custom-error";
 
 export default class ChainedError extends TsCustomError {
