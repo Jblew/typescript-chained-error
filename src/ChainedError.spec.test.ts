@@ -79,4 +79,40 @@ describe("ChainedError", () => {
                 .and.include("Caused by: BChainedError");
         });
     });
+
+    describe("stack cleaning", () => {
+        class CleanStackError extends ChainedError {
+            public constructor(msg: string, cause?: Error) {
+                super(msg, cause, { cleanStack: true });
+            }
+        }
+
+        class DirtyStackError extends ChainedError {
+            public constructor(msg: string, cause?: Error) {
+                super(msg, cause, { cleanStack: false });
+            }
+        }
+
+        function cleanThrower() {
+            throw new CleanStackError("Error in thrower");
+        }
+
+        function dirtyThrower() {
+            throw new DirtyStackError("Error in thrower");
+        }
+
+        it("Cleans stack when Options.cleanStack", () => {
+            expect(cleanThrower)
+                .to.throw(CleanStackError)
+                .with.property("stack")
+                .that.does.not.include("tryOnImmediate");
+        });
+
+        it("Does not clean stack when Options.cleanStack", () => {
+            expect(dirtyThrower)
+                .to.throw(DirtyStackError)
+                .with.property("stack")
+                .that.includes("tryOnImmediate");
+        });
+    });
 });
