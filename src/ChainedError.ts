@@ -12,13 +12,13 @@ export default class ChainedError extends TsCustomError {
             this.stack = (this.stack || "") + "\n Caused by: " + (cause.stack || cause);
         }
 
-        if (this.stack && options.cleanStack) {
-            this.stack = this.cleanStack(this.stack);
+        function doCleanStack(stack: string) {
+            return cleanStack(stack, { pretty: true });
         }
-    }
 
-    private cleanStack(stack: string): string {
-        return cleanStack(stack, { pretty: true });
+        if (this.stack && options.cleanStack) {
+            this.stack = doCleanStack(this.stack);
+        }
     }
 }
 
