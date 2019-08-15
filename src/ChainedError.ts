@@ -1,33 +1,18 @@
-import * as cleanStack from "clean-stack--tmp-fork-by-jblew-browser-support";
 import { CustomError as TsCustomError } from "ts-custom-error";
+
+import { ChainedErrorFactory } from "./ChainedErrorFactory";
+import { Options } from "./Options";
 
 export default class ChainedError extends TsCustomError {
     public cause?: Error;
 
     public constructor(message?: string, cause?: Error, options: Options = Options.DEFAULT) {
-        super(message);
+        super(message) /* istanbul ignore next (treats super call as testable) */;
 
-        if (cause) {
-            this.cause = cause;
-            this.stack = (this.stack || "") + "\n Caused by: " + (cause.stack || cause);
-        }
-
-        function doCleanStack(stack: string) {
-            return cleanStack(stack, { pretty: true });
-        }
-
-        if (this.stack && options.cleanStack) {
-            this.stack = doCleanStack(this.stack);
-        }
+        this.cause = cause;
+        this.stack = ChainedErrorFactory.appendToStack(this.stack, cause, options);
     }
 }
 
-export interface Options {
-    cleanStack: boolean; // default true
-}
-
-export namespace Options {
-    export const DEFAULT: Options = {
-        cleanStack: true,
-    };
-}
+export { ChainedErrorFactory } from "./ChainedErrorFactory";
+export { Options } from "./Options";
