@@ -4,6 +4,10 @@
   "description": "Java-style chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
   "main": "dist/ChainedError.js",
   "types": "dist/ChainedError.d.ts",
+  "files": [
+    "LICENSE",
+    "dist/*"
+  ],
   "engines": {
     "node": ">=8"
   },
