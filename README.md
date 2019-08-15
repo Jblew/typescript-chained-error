@@ -9,7 +9,7 @@
 - Allows stacking errors with "Caused by: " keyword in stack
 - Preserves error class name in trace (uses [ts-custom-error](https://www.npmjs.com/package/ts-custom-error) for that)
 - Automatically cleans up stack using clean-stack](https://github.com/sindresorhus/clean-stack)
-
+- Has a `ChainedErrorFactory` that can extend any already existing error with `Caused by` clause additional properties and
 
 
 ### Installation
@@ -71,12 +71,28 @@ interface Options {
 
 // Pass options in constructor
 public constructor(msg?: string, cause?: Error) {
-        super(msg, cause, { cleanStack: false });
-    }
-
+    super(msg, cause, { cleanStack: false });
+}
 ```
 
+### Using ChainedErrorFactory
 
+Example with firebase-functions https error (which is the only error that is thrown at the call site).
+```typescript
+import { ChainedErrorFactory } from "typescript-chained-error";
+import * as functions from "firebase-functions";
+
+throw ChainedErrorFactory.make(
+    // primary error that will be extended (this error is preserved in the prototype chain):
+    functions.https.HttpsError("resource-exhausted", "Message"),
+    // Causing error:
+    new TypeError("Cause error"),
+    // (optional) Additional fields that will be assigned to the returned error object
+    // e.g.: functions.https.HttpsError allow to add a details field to the error. That field will be reconstructed at the call site.
+    /* optional: */{ details: { additional: "properties" } },
+    // (optional) Options. Specified above.
+);
+```
 
 ---
 
