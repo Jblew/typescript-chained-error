@@ -1,7 +1,5 @@
-/* tslint:disable:max-classes-per-file */
-import { expect } from "chai";
-import "mocha";
-
+/* tslint:disable:max-classes-per-file no-unused-expression */
+import { expect } from "./_test/test_environment";
 import ChainedError from "./ChainedError";
 
 describe("ChainedError", () => {
@@ -22,6 +20,16 @@ describe("ChainedError", () => {
             super(msg, cause);
         }
     }
+
+    it("is instanceof Error", () => {
+        const chainedError = new AChainedError("m");
+        expect(chainedError instanceof Error).to.be.true;
+    });
+
+    it("is instanceof ChainedError", () => {
+        const chainedError = new AChainedError("m");
+        expect(chainedError instanceof ChainedError).to.be.true;
+    });
 
     describe("with single cause", () => {
         function thrower() {
@@ -82,14 +90,18 @@ describe("ChainedError", () => {
 
     describe("stack cleaning", () => {
         class CleanStackError extends ChainedError {
-            public constructor(msg: string, cause?: Error) {
-                super(msg, cause, { cleanStack: true });
+            public constructor(msg: string) {
+                const causeErr = new Error("Err");
+                causeErr.stack += "\n at processImmediate (internal/timers.js:439:21)";
+                super(msg, causeErr, { cleanStack: true });
             }
         }
 
         class DirtyStackError extends ChainedError {
             public constructor(msg: string, cause?: Error) {
-                super(msg, cause, { cleanStack: false });
+                const causeErr = new Error("Err");
+                causeErr.stack += "\n at processImmediate (internal/timers.js:439:21)";
+                super(msg, causeErr, { cleanStack: false });
             }
         }
 
@@ -105,14 +117,14 @@ describe("ChainedError", () => {
             expect(cleanThrower)
                 .to.throw(CleanStackError)
                 .with.property("stack")
-                .that.does.not.include("tryOnImmediate");
+                .that.does.not.include("processImmediate");
         });
 
         it("Does not clean stack when Options.cleanStack", () => {
             expect(dirtyThrower)
                 .to.throw(DirtyStackError)
                 .with.property("stack")
-                .that.includes("tryOnImmediate");
+                .that.includes("processImmediate");
         });
     });
 });
