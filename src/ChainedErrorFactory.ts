@@ -1,4 +1,5 @@
 import * as cleanStack from "clean-stack--tmp-fork-by-jblew-browser-support";
+import * as deepmerge from "deepmerge";
 
 import ChainedError from "./ChainedError";
 import { Options } from "./Options";
@@ -42,7 +43,7 @@ export namespace ChainedErrorFactory {
     function appendOwnProps(toObj: object & { [x: string]: any }, props: object & { [x: string]: any }) {
         for (const prop in props) {
             if (props.hasOwnProperty(prop)) {
-                toObj[prop] = props[prop];
+                toObj[prop] = toObj.hasOwnProperty(prop) ? deepmerge(toObj[prop], props[prop]) : props[prop];
             }
         }
     }

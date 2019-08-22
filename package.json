@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "clean-stack--tmp-fork-by-jblew-browser-support": "^2.1.1",
+    "deepmerge": "^4.0.0",
     "ts-custom-error": "^3.1.1"
   },
   "devDependencies": {

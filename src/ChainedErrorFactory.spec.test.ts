@@ -1,5 +1,6 @@
 // tslint:disable no-unused-expression
 import { expect } from "./_test/test_environment";
+import ChainedError from "./ChainedError";
 import { ChainedErrorFactory } from "./ChainedErrorFactory";
 import { Options } from "./Options";
 
@@ -43,7 +44,7 @@ describe("ChainedErrorFactory", function() {
         expect(chainedError).to.not.haveOwnProperty("cause");
     });
 
-    it("Appends specified appends own properties to created error", () => {
+    it("Appends specified own properties to created error", () => {
         const requiredProps = {
             a: { c: 1, d: [] },
             b: { f: "a" },
@@ -55,5 +56,27 @@ describe("ChainedErrorFactory", function() {
         expect(chainedError.a).to.deep.equal(requiredProps.a);
         expect(chainedError.b).to.deep.equal(requiredProps.b);
         expect((chainedError as any).c).to.be.undefined;
+    });
+
+    it("Deeply merges appendeds", () => {
+        class ErrorThatAlreadyHasProps extends ChainedError {
+            public details = {
+                a: "b",
+            };
+
+            public constructor(msg: string) {
+                super(msg);
+            }
+        }
+
+        const errorThatAlreadyHasProps = new ErrorThatAlreadyHasProps("err");
+
+        const requiredProps = {
+            details: { b: "c" },
+        };
+
+        const chainedError = ChainedErrorFactory.make(errorThatAlreadyHasProps, undefined, requiredProps);
+        expect(chainedError.details.a).to.deep.equal("b");
+        expect(chainedError.details.b).to.deep.equal(requiredProps.details.b);
     });
 });
