@@ -58,25 +58,60 @@ describe("ChainedErrorFactory", function() {
         expect((chainedError as any).c).to.be.undefined;
     });
 
-    it("Deeply merges appendeds", () => {
+    describe("Append deepmerge", () => {
         class ErrorThatAlreadyHasProps extends ChainedError {
             public details = {
                 a: "b",
             };
 
-            public constructor(msg: string) {
-                super(msg);
+            public constructor(message: string) {
+                super(message);
             }
         }
 
-        const errorThatAlreadyHasProps = new ErrorThatAlreadyHasProps("err");
+        let msg: string;
+        let errorThatAlreadyHasProps: ErrorThatAlreadyHasProps;
 
         const requiredProps = {
             details: { b: "c" },
         };
 
-        const chainedError = ChainedErrorFactory.make(errorThatAlreadyHasProps, undefined, requiredProps);
-        expect(chainedError.details.a).to.deep.equal("b");
-        expect(chainedError.details.b).to.deep.equal(requiredProps.details.b);
+        let chainedError: ErrorThatAlreadyHasProps & ChainedError & typeof requiredProps;
+
+        beforeEach(() => {
+            msg = `msg-${Math.random()}`;
+            errorThatAlreadyHasProps = new ErrorThatAlreadyHasProps(msg);
+            chainedError = ChainedErrorFactory.make(errorThatAlreadyHasProps, undefined, requiredProps);
+        });
+
+        it("Deeply merges appends", () => {
+            expect(chainedError.details.a).to.deep.equal("b");
+            expect(chainedError.details.b).to.deep.equal(requiredProps.details.b);
+        });
+
+        it("Doesnt break message", () => {
+            expect(chainedError.message).to.equal(msg);
+        });
+
+        it("Doesnt break cause", () => {
+            const cause = new Error("cause-error");
+            chainedError = ChainedErrorFactory.make(errorThatAlreadyHasProps, cause, requiredProps);
+            expect(chainedError.cause).to.equal(cause);
+        });
+
+        it("Overrides strings properly", () => {
+            const overrideTestError = ChainedErrorFactory.make(errorThatAlreadyHasProps, undefined, {
+                details: { a: "ha", he: "he" },
+            });
+            expect(overrideTestError.details.a).to.equal("ha");
+        });
+
+        it("Overrides message properly", () => {
+            chainedError = ChainedErrorFactory.make(errorThatAlreadyHasProps, undefined, {
+                message: "new-message",
+                ...requiredProps,
+            });
+            expect(chainedError.message).to.equal("new-message");
+        });
     });
 });
