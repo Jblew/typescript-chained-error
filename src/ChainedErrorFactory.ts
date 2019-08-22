@@ -43,7 +43,8 @@ export namespace ChainedErrorFactory {
     function appendOwnProps(toObj: object & { [x: string]: any }, props: object & { [x: string]: any }) {
         for (const prop in props) {
             if (props.hasOwnProperty(prop)) {
-                toObj[prop] = toObj.hasOwnProperty(prop) ? deepmerge(toObj[prop], props[prop]) : props[prop];
+                const shouldMerge = toObj.hasOwnProperty(prop) && typeof toObj[prop] === "object";
+                toObj[prop] = shouldMerge ? deepmerge(toObj[prop], props[prop]) : props[prop];
             }
         }
     }
