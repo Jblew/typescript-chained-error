@@ -4,6 +4,10 @@ language: node_js
 install:
   - npm ci
 
+branches:
+    except:
+        - /^v[0-9]/
+
 script:
   - npm run build
   - npm run test-with-coverage-lcov
