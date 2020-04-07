@@ -1,6 +1,6 @@
 /* tslint:disable:max-classes-per-file no-unused-expression */
-import { expect } from "./_test/test_environment";
 import ChainedError from "./ChainedError";
+import { expect } from "./_test/test_environment";
 
 describe("ChainedError", () => {
     class AChainedError extends ChainedError {
@@ -45,16 +45,11 @@ describe("ChainedError", () => {
         }
 
         it("cause is instance of specified error", () => {
-            expect(rethrower)
-                .to.throw(BChainedError)
-                .with.property("cause");
+            expect(rethrower).to.throw(BChainedError).with.property("cause");
         });
 
         it("stack contains cause with it's stack", () => {
-            expect(rethrower)
-                .to.throw(BChainedError)
-                .with.property("stack")
-                .that.include("Caused by: AChainedError");
+            expect(rethrower).to.throw(BChainedError).with.property("stack").that.include("Caused by: AChainedError");
         });
     });
 
@@ -121,10 +116,7 @@ describe("ChainedError", () => {
         });
 
         it("Does not clean stack when Options.cleanStack", () => {
-            expect(dirtyThrower)
-                .to.throw(DirtyStackError)
-                .with.property("stack")
-                .that.includes("processImmediate");
+            expect(dirtyThrower).to.throw(DirtyStackError).with.property("stack").that.includes("processImmediate");
         });
     });
 });

@@ -1,10 +1,10 @@
 // tslint:disable no-unused-expression
-import { expect } from "./_test/test_environment";
 import ChainedError from "./ChainedError";
 import { ChainedErrorFactory } from "./ChainedErrorFactory";
 import { Options } from "./Options";
+import { expect } from "./_test/test_environment";
 
-describe("ChainedErrorFactory", function() {
+describe("ChainedErrorFactory", function () {
     it("Creates error that is instanceof Error", () => {
         const someError = new Error("some error");
         const chainedError = ChainedErrorFactory.make(someError, new Error("Cause"));
@@ -33,9 +33,7 @@ describe("ChainedErrorFactory", function() {
         const causeError = new Error("Cause error");
         const someError = new TypeError("some type error");
         const chainedError = ChainedErrorFactory.make(someError, causeError);
-        expect(chainedError)
-            .to.haveOwnProperty("cause")
-            .that.equals(causeError);
+        expect(chainedError).to.haveOwnProperty("cause").that.equals(causeError);
     });
 
     it("Creates error that does not have cause property if cause not specified", () => {
