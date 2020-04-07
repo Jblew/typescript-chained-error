@@ -1,7 +1,7 @@
 {
     "name": "typescript-chained-error",
     "version": "0.0.0-development",
-    "description": "Java-style chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
+    "description": "Chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
     "main": "dist/ChainedError.js",
     "types": "dist/ChainedError.d.ts",
     "files": [
@@ -32,23 +32,23 @@
         "ts-custom-error": "^3.1.1"
     },
     "devDependencies": {
-        "@commitlint/cli": "^8.1.0",
-        "@commitlint/config-conventional": "^8.1.0",
-        "@types/chai": "^4.2.0",
-        "@types/mocha": "5.2.7",
-        "@types/node": "^12.7.2",
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
+        "@types/chai": "^4.2.11",
+        "@types/mocha": "7.0.2",
+        "@types/node": "^13.11.0",
         "chai": "4.2.0",
-        "codecov": "^3.5.0",
-        "husky": "^3.0.3",
+        "codecov": "^3.6.5",
+        "husky": "^4.2.3",
         "istanbul": "^0.4.5",
         "jblew-tslint-config": "^0.1.0",
-        "mocha": "^6.2.0",
-        "nyc": "^14.1.1",
-        "semantic-release": "^15.13.21",
-        "ts-node": "8.3.0",
-        "tslint": "5.18.0",
-        "typescript": "3.5.3",
-        "uuid": "3.3.2"
+        "mocha": "^7.1.1",
+        "nyc": "^15.0.1",
+        "semantic-release": "^17.0.4",
+        "ts-node": "8.8.2",
+        "tslint": "6.1.1",
+        "typescript": "3.8.3",
+        "uuid": "7.0.3"
     },
     "nyc": {
         "extension": [
