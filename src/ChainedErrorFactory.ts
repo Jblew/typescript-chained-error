@@ -1,4 +1,4 @@
-import * as cleanStack from "clean-stack--tmp-fork-by-jblew-browser-support";
+import * as cleanStack from "clean-stack";
 import * as deepmerge from "deepmerge";
 
 import ChainedError from "./ChainedError";

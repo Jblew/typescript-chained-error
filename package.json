@@ -1,105 +1,105 @@
 {
-  "name": "typescript-chained-error",
-  "version": "0.0.0-development",
-  "description": "Java-style chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
-  "main": "dist/ChainedError.js",
-  "types": "dist/ChainedError.d.ts",
-  "files": [
-    "LICENSE",
-    "dist/*"
-  ],
-  "engines": {
-    "node": ">=8"
-  },
-  "scripts": {
-    "check": "if echo \"$(node --version)\" | grep -q \"$(cat .nvmrc)\"; then echo \"Node version correct\"; else echo \"Node version does not match that in .nvmrc\" && exit 1; fi",
-    "build:cleanbefore": "rm -rf dist",
-    "build:lint": "tslint -c tslint.json -p tsconfig.lint.json",
-    "build:node": "tsc",
-    "build": "npm run check && npm run build:cleanbefore && npm run build:node && npm run build:lint",
-    "prepare": "NODE_ENV=production npm run build",
-    "test": "find src -name '*.spec.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register",
-    "verify": "find src -name '*.integration.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register",
-    "lint-fix": "tslint --fix -c tslint.json -p tsconfig.lint.json",
-    "test-with-coverage": "nyc npm run test",
-    "test-with-coverage-lcov": "nyc --reporter=lcov npm run test",
-    "upload-coverage": "codecov",
-    "semantic-release": "semantic-release"
-  },
-  "dependencies": {
-    "clean-stack--tmp-fork-by-jblew-browser-support": "^2.1.1",
-    "deepmerge": "^4.0.0",
-    "ts-custom-error": "^3.1.1"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^8.1.0",
-    "@types/chai": "^4.2.0",
-    "@types/mocha": "5.2.7",
-    "@types/node": "^12.7.2",
-    "chai": "4.2.0",
-    "codecov": "^3.5.0",
-    "husky": "^3.0.3",
-    "istanbul": "^0.4.5",
-    "jblew-tslint-config": "^0.1.0",
-    "mocha": "^6.2.0",
-    "nyc": "^14.1.1",
-    "semantic-release": "^15.13.21",
-    "ts-node": "8.3.0",
-    "tslint": "5.18.0",
-    "typescript": "3.5.3",
-    "uuid": "3.3.2"
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
+    "name": "typescript-chained-error",
+    "version": "0.0.0-development",
+    "description": "Java-style chained custom errors for Typescript and Javascript. ('Caused by' in error stack)",
+    "main": "dist/ChainedError.js",
+    "types": "dist/ChainedError.d.ts",
+    "files": [
+        "LICENSE",
+        "dist/*"
     ],
-    "exclude": [
-      "**/*.d.ts",
-      "**/*.test.ts",
-      "**/_test"
+    "engines": {
+        "node": ">=8"
+    },
+    "scripts": {
+        "check": "if echo \"$(node --version)\" | grep -q \"$(cat .nvmrc)\"; then echo \"Node version correct\"; else echo \"Node version does not match that in .nvmrc\" && exit 1; fi",
+        "build:cleanbefore": "rm -rf dist",
+        "build:lint": "tslint -c tslint.json -p tsconfig.lint.json",
+        "build:node": "tsc",
+        "build": "npm run check && npm run build:cleanbefore && npm run build:node && npm run build:lint",
+        "prepare": "NODE_ENV=production npm run build",
+        "test": "find src -name '*.spec.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register",
+        "verify": "find src -name '*.integration.test.ts' | TS_NODE_FILES=true TS_NODE_CACHE=false TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' xargs mocha -r ts-node/register --require source-map-support/register",
+        "lint-fix": "tslint --fix -c tslint.json -p tsconfig.lint.json",
+        "test-with-coverage": "nyc npm run test",
+        "test-with-coverage-lcov": "nyc --reporter=lcov npm run test",
+        "upload-coverage": "codecov",
+        "semantic-release": "semantic-release"
+    },
+    "dependencies": {
+        "clean-stack": "^2.1.1",
+        "deepmerge": "^4.2.2",
+        "ts-custom-error": "^3.1.1"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^8.1.0",
+        "@commitlint/config-conventional": "^8.1.0",
+        "@types/chai": "^4.2.0",
+        "@types/mocha": "5.2.7",
+        "@types/node": "^12.7.2",
+        "chai": "4.2.0",
+        "codecov": "^3.5.0",
+        "husky": "^3.0.3",
+        "istanbul": "^0.4.5",
+        "jblew-tslint-config": "^0.1.0",
+        "mocha": "^6.2.0",
+        "nyc": "^14.1.1",
+        "semantic-release": "^15.13.21",
+        "ts-node": "8.3.0",
+        "tslint": "5.18.0",
+        "typescript": "3.5.3",
+        "uuid": "3.3.2"
+    },
+    "nyc": {
+        "extension": [
+            ".ts"
+        ],
+        "exclude": [
+            "**/*.d.ts",
+            "**/*.test.ts",
+            "**/_test"
+        ],
+        "include": [
+            "src/**/*.ts"
+        ],
+        "reporter": [
+            "html"
+        ],
+        "all": true
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "header-max-length": [
+                0
+            ],
+            "scope-case": [
+                0
+            ]
+        }
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "release": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Jblew/typescript-chained-error"
+    },
+    "keywords": [
+        "typescript",
+        "error"
     ],
-    "include": [
-      "src/**/*.ts"
+    "author": "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)",
+    "contributors": [
+        "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)"
     ],
-    "reporter": [
-      "html"
-    ],
-    "all": true
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "header-max-length": [
-        0
-      ],
-      "scope-case": [
-        0
-      ]
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Jblew/typescript-chained-error/issues"
     }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "release": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jblew/typescript-chained-error"
-  },
-  "keywords": [
-    "typescript",
-    "error"
-  ],
-  "author": "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)",
-  "contributors": [
-    "Jędrzej Lewandowski <jedrzejblew@gmail.com> (https://jedrzej.lewandowski.doctor/)"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Jblew/typescript-chained-error/issues"
-  }
 }
