@@ -2,15 +2,13 @@
 
 [![npm](https://img.shields.io/npm/v/typescript-chained-error.svg?style=flat-square)](https://www.npmjs.com/package/typescript-chained-error) [![build](https://travis-ci.com/Jblew/typescript-chained-error.svg?branch=master)](https://travis-ci.com/Jblew/typescript-chained-error) [![Code coverage](https://img.shields.io/codecov/c/gh/jblew/typescript-chained-error?style=flat-square)](https://codecov.io/gh/jblew/typescript-chained-error) [![License](https://img.shields.io/github/license/jblew/typescript-chained-error.svg?style=flat-square)](https://github.com/jblew/typescript-chained-error/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-
-
 ### Highlights
 
-- Allows stacking errors with "Caused by: " keyword in stack
-- Preserves error class name in trace (uses [ts-custom-error](https://www.npmjs.com/package/ts-custom-error) for that)
-- Automatically cleans up stack using clean-stack](https://github.com/sindresorhus/clean-stack)
-- Has a `ChainedErrorFactory` that can extend any already existing error with `Caused by` clause additional properties and
-
+-   Allows stacking errors with "Caused by: " keyword in stack
+-   Preserves error class name in trace (uses [ts-custom-error](https://www.npmjs.com/package/ts-custom-error) for that)
+-   Automatically cleans up stack using clean-stack](https://github.com/sindresorhus/clean-stack)
+-   Has a `ChainedErrorFactory` that can extend any already existing error with `Caused by` clause additional properties and
+-   100% test coverage. Used in healthcare-grade solutions
 
 ### Installation
 
@@ -57,10 +55,8 @@ CannotPerformCalculationsError: Cannot build array
     at buildArray (/typescript-chained-error/src/test.ts:12:16)
     at Object.<anonymous> (/typescript-chained-error/src/test.ts:18:1)
     (...)
-    
+
 ```
-
-
 
 ### Options
 
@@ -78,6 +74,7 @@ public constructor(msg?: string, cause?: Error) {
 ### Using ChainedErrorFactory
 
 Example with firebase-functions https error (which is the only error that is thrown at the call site).
+
 ```typescript
 import { ChainedErrorFactory } from "typescript-chained-error";
 import * as functions from "firebase-functions";
@@ -89,7 +86,7 @@ throw ChainedErrorFactory.make(
     new TypeError("Cause error"),
     // (optional) Additional fields that will be assigned to the returned error object
     // e.g.: functions.https.HttpsError allow to add a details field to the error. That field will be reconstructed at the call site.
-    /* optional: */{ details: { additional: "properties" } },
+    /* optional: */ { details: { additional: "properties" } },
     // (optional) Options. Specified above.
 );
 ```
