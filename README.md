@@ -93,4 +93,5 @@ throw ChainedErrorFactory.make(
 
 ---
 
-Extends the brilliant [ts-custom-error](https://www.npmjs.com/package/ts-custom-error). Uses [clean-stack](https://github.com/sindresorhus/clean-stack) by @sindresorhus for pretty output. | Made with ❤️ by [Jędrzej Lewandowski](https://jedrzej.lewandowski.doctor/).
+Extends the brilliant [ts-custom-error](https://www.npmjs.com/package/ts-custom-error). Uses [clean-stack](https://github.com/sindresorhus/clean-stack) by @sindresorhus for pretty output. | Made with ❤️ by [Jędrzej Lewandowski](https://jblew.pl/).
+
